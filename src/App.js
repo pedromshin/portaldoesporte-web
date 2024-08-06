@@ -1,23 +1,60 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import "./App.css";
+import ModalityTable from "./ModalityTable";
+import ModalityForm from "./ModalityForm";
+import ModalitySearch from "./ModalitySearch";
 
 function App() {
+  const [data, setData] = useState([]);
+  // const [searchId, setSearchId] = useState("");
+
+  const endpoint =
+    process.env.REACT_APP_ENV_VAR === "production"
+      ? process.env.REACT_APP_ENDPOINT_PRODUCTION
+      : process.env.REACT_APP_ENV_VAR === "preview"
+      ? process.env.REACT_APP_ENDPOINT_STAGING
+      : process.env.REACT_APP_ENDPOINT_LOCAL;
+
+  const fetchData = async (id = "") => {
+    const url = id ? `${endpoint}/modality/${id}` : `${endpoint}/modality`;
+
+    try {
+      const response = await fetch(url, {
+        method: "GET",
+      });
+      const result = await response.json();
+      setData(Array.isArray(result) ? result : [result]);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  const handleSearch = (id) => {
+    // setSearchId(id);
+    fetchData(id);
+  };
+
+  const handleDelete = async (id) => {
+    const url = `${endpoint}/modality/${id}`;
+    try {
+      await fetch(url, {
+        method: "DELETE",
+      });
+      fetchData();
+    } catch (error) {
+      console.error("Error deleting data:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ModalitySearch onSearch={handleSearch} />
+      <ModalityTable data={data} onDelete={handleDelete} />
+      <ModalityForm onFormSubmit={fetchData} />
     </div>
   );
 }
