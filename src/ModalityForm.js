@@ -45,7 +45,7 @@ const Button = styled.button`
 function ModalityForm({ onFormSubmit }) {
   const [id, setId] = useState("");
   const [name, setName] = useState("");
-  const [ingredients, setIngredients] = useState("");
+  const [athlete, setAthletes] = useState("");
 
   const endpoint =
     process.env.REACT_APP_ENV_VAR === "production"
@@ -60,7 +60,7 @@ function ModalityForm({ onFormSubmit }) {
     const method = id ? "PATCH" : "POST";
     const body = {
       name,
-      ingredients: ingredients.split(",").map((item) => item.trim()),
+      athlete: athlete.split(",").map((item) => item.trim()),
     };
 
     try {
@@ -74,7 +74,7 @@ function ModalityForm({ onFormSubmit }) {
       onFormSubmit();
       setId("");
       setName("");
-      setIngredients("");
+      setAthletes("");
     } catch (error) {
       console.error("Error submitting form:", error);
     }
@@ -96,11 +96,11 @@ function ModalityForm({ onFormSubmit }) {
         />
       </FormGroup>
       <FormGroup>
-        <Label>Ingredients (comma separated):</Label>
+        <Label>athlete (comma separated):</Label>
         <Input
           type="text"
-          value={ingredients}
-          onChange={(e) => setIngredients(e.target.value)}
+          value={athlete}
+          onChange={(e) => setAthletes(e.target.value)}
           required
         />
       </FormGroup>
