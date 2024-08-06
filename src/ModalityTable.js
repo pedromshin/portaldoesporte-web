@@ -50,7 +50,7 @@ function ModalityTable({ data, onDelete }) {
         <Tr>
           <Th>ID</Th>
           <Th>Name</Th>
-          <Th>Ingredients</Th>
+          <Th>Athletes</Th>
           <Th>Actions</Th>
         </Tr>
       </Thead>
@@ -59,7 +59,7 @@ function ModalityTable({ data, onDelete }) {
           <Tr key={modality._id}>
             <Td>{modality._id}</Td>
             <Td>{modality.name}</Td>
-            <Td>{modality.ingredients?.join(", ")}</Td>
+            <Td>{modality.athletes?.join(", ")}</Td>
             <Td>
               <Button onClick={() => onDelete(modality._id)}>Delete</Button>
             </Td>
