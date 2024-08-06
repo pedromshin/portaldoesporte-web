@@ -45,7 +45,7 @@ const Button = styled.button`
 function ModalityForm({ onFormSubmit }) {
   const [id, setId] = useState("");
   const [name, setName] = useState("");
-  const [athlete, setAthletes] = useState("");
+  const [athletes, setAthletes] = useState("");
 
   const endpoint =
     process.env.REACT_APP_ENV_VAR === "production"
@@ -60,7 +60,7 @@ function ModalityForm({ onFormSubmit }) {
     const method = id ? "PATCH" : "POST";
     const body = {
       name,
-      athlete: athlete.split(",").map((item) => item.trim()),
+      athletes: athletes.split(",").map((item) => item.trim()),
     };
 
     try {
@@ -96,10 +96,10 @@ function ModalityForm({ onFormSubmit }) {
         />
       </FormGroup>
       <FormGroup>
-        <Label>athlete (comma separated):</Label>
+        <Label>athletes (comma separated):</Label>
         <Input
           type="text"
-          value={athlete}
+          value={athletes}
           onChange={(e) => setAthletes(e.target.value)}
           required
         />
