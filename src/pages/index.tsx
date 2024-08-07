@@ -15,6 +15,7 @@ import Map from "./map";
 import Memberships from "./memberships";
 import Register from "./register";
 import Login from "./login";
+import { AuthProvider } from "../providers/AuthProvider";
 
 export const routes = {
   pageRoot: "/memberships",
@@ -29,28 +30,36 @@ export const routes = {
 
 const Pages: React.FC = () => {
   return (
-    <Router>
-      <div>
-        <Header />
-        <Routes>
-          <Route path="*" element={<Navigate to={routes.pageRoot} replace />} />
+    <AuthProvider>
+      <Router>
+        <div>
+          <Header />
+          <Routes>
+            <Route
+              path="*"
+              element={<Navigate to={routes.pageRoot} replace />}
+            />
 
-          <Route path={routes.pageRoot} element={<Memberships />} />
-          <Route path={routes.pageFeed} element={<Feed />} />
-          <Route path={routes.pageClubs} element={<Clubs />} />
-          <Route path={routes.pageMap} element={<Map />} />
-          <Route path={routes.pageMemberships} element={<Memberships />} />
-          <Route
-            path={routes.pageCreateModality}
-            element={<CreateModality />}
-          />
-          <Route path={routes.pagePrivacyPolicy} element={<PrivacyPolicy />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
-        </Routes>
-        <Nav />
-      </div>
-    </Router>
+            <Route path={routes.pageRoot} element={<Memberships />} />
+            <Route path={routes.pageFeed} element={<Feed />} />
+            <Route path={routes.pageClubs} element={<Clubs />} />
+            <Route path={routes.pageMap} element={<Map />} />
+            <Route path={routes.pageMemberships} element={<Memberships />} />
+            <Route
+              path={routes.pageCreateModality}
+              element={<CreateModality />}
+            />
+            <Route
+              path={routes.pagePrivacyPolicy}
+              element={<PrivacyPolicy />}
+            />
+            <Route path="/register" element={<Register />} />
+            <Route path="/login" element={<Login />} />
+          </Routes>
+          <Nav />
+        </div>
+      </Router>
+    </AuthProvider>
   );
 };
 
