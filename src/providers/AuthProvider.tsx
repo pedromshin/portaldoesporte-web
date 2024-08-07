@@ -25,7 +25,6 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
   useEffect(() => {
     const checkAuth = () => {
       const access_token = localStorage.getItem("access_token");
-      console.log(1, access_token);
       if (access_token) {
         setAuth({ access_token });
       }

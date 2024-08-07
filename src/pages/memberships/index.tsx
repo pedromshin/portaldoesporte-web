@@ -11,8 +11,6 @@ export default () => {
     navigate(routes.pageLogin);
   };
 
-  console.log(auth);
-
   return (
     <h2>
       Associações
