@@ -1,10 +1,9 @@
-// src/App.tsx
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
-import Home from './Home';
-import About from './About';
-import Contact from './Contact';
-import App from './App';
+import Feed from './feed';
+import Following from './following';
+import CreateModality from './create-modality';
+import PrivacyPolicy from './privacy-policy';
 
 const Pages: React.FC = () => {
   return (
@@ -16,22 +15,23 @@ const Pages: React.FC = () => {
               <Link to="/">Feed</Link>
             </li>
             <li>
-              <Link to="/home">Home</Link>
+              <Link to="/following">Acompanhando</Link>
             </li>
             <li>
-              <Link to="/about">About</Link>
+              <Link to="/create-modality">Criar modalidade</Link>
             </li>
             <li>
-              <Link to="/contact">Contact</Link>
+              <Link to="/privacy-policy">Política de privacidade</Link>
             </li>
           </ul>
         </nav>
 
         <Routes>
-          <Route path="/" element={<App />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
+          <Route path="/" element={<Feed />} />
+          <Route path="/feed" element={<Feed />} />
+          <Route path="/following" element={<Following />} />
+          <Route path="/create-modality" element={<CreateModality />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         </Routes>
       </div>
     </Router>
