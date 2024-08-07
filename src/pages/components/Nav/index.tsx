@@ -1,35 +1,59 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
+import {
+  IconComponents,
+  IconHome,
+  IconMap,
+  IconSubtask,
+} from "@tabler/icons-react";
+
 const Container = styled.nav`
   position: fixed;
   bottom: 0;
   width: 100%;
+  background: white;
 `;
 
 const List = styled.ul`
   display: flex;
   padding: 0;
   margin: 0;
+  justify-content: space-around;
 `;
 
-const Item = styled.div``;
+const Item = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid gray;
+  padding: 12px 0;
+`;
 
 export default () => {
   return (
     <Container>
       <List>
         <Item>
-          <Link to="/">Feed</Link>
+          <Link to="/">
+            <IconHome size={24} />
+          </Link>
         </Item>
         <Item>
-          <Link to="/following">Acompanhando</Link>
+          <Link to="/following">
+            <IconSubtask size={24} />
+          </Link>
         </Item>
         <Item>
-          <Link to="/create-modality">Criar modalidade</Link>
+          <Link to="/create-modality">
+            <IconMap size={24} />
+          </Link>
         </Item>
         <Item>
-          <Link to="/privacy-policy">Política de privacidade</Link>
+          <Link to="/create-modality">
+            <IconComponents size={24} />
+          </Link>
         </Item>
       </List>
     </Container>
