@@ -1,10 +1,4 @@
-import React, {
-  createContext,
-  useState,
-  useContext,
-  PropsWithChildren,
-  useEffect,
-} from "react";
+import { createContext, useState, useContext, PropsWithChildren } from "react";
 import axios from "axios";
 import { endpoint } from "../utils/endpoint";
 
@@ -14,12 +8,14 @@ export type AuthContextType = {
   register: (username: string, password: string) => Promise<void>;
 };
 
-export const AuthContext = createContext<AuthContextType | null>(null);
+export const AuthContext = createContext<AuthContextType | undefined>(
+  undefined
+);
 
 export const useAuth = () => useContext(AuthContext);
 
 export const AuthProvider = ({ children }: PropsWithChildren) => {
-  const [auth, setAuth] = useState<AuthContextType | null>(null);
+  const [auth, setAuth] = useState<AuthContextType | undefined>(undefined);
 
   const login = async (username: string, password: string) => {
     const response = await axios.post(`${endpoint}/auth/login`, {
