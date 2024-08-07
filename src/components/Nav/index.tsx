@@ -20,9 +20,9 @@ const Container = styled.nav`
   width: 100%;
   background: white;
 
-  @media (min-width: 1024px) {
-    display: none;
-  }
+  // @media (min-width: 1024px) {
+  //   display: none;
+  // }
 `;
 
 const List = styled.ul`
