@@ -9,7 +9,7 @@ import axios from "axios";
 import { endpoint } from "../utils/endpoint";
 
 export type AuthContextType = {
-  auth: { accessToken: string }; // Define a proper type for `auth` if you know it
+  auth: { access_token: string }; // Define a proper type for `auth` if you know it
   login: (username: string, password: string) => Promise<void>;
   register: (username: string, password: string) => Promise<void>;
   logout: () => void;
@@ -24,9 +24,10 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
 
   useEffect(() => {
     const checkAuth = () => {
-      const accessToken = localStorage.getItem("accessToken");
-      if (accessToken) {
-        setAuth({ accessToken }); // Adjust based on your auth structure
+      const access_token = localStorage.getItem("access_token");
+      console.log(1, access_token);
+      if (access_token) {
+        setAuth({ access_token });
       }
     };
 
@@ -38,9 +39,9 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
       username,
       password,
     });
-    const { accessToken } = response.data;
-    localStorage.setItem("accessToken", accessToken);
-    setAuth({ accessToken });
+    const { access_token } = response.data;
+    localStorage.setItem("access_token", access_token);
+    setAuth({ access_token });
   };
 
   const register = async (username: string, password: string) => {
@@ -48,7 +49,7 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
   };
 
   const logout = () => {
-    localStorage.removeItem("accessToken");
+    localStorage.removeItem("access_token");
     setAuth(null);
   };
 

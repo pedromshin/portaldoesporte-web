@@ -41,8 +41,9 @@ function Register() {
         password,
       });
 
-      const { accessToken } = response.data;
-      localStorage.setItem("authToken", accessToken);
+      const { access_token } = response.data;
+
+      localStorage.setItem("access_token", access_token);
 
       navigate(routes.pageMemberships);
     } catch (error: any) {

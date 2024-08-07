@@ -1,16 +1,40 @@
 import { useEffect, useState } from "react";
+import styled from "styled-components";
+import axios from "axios";
+import { endpoint } from "../../utils/endpoint";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../hooks/useAuth";
 import { routes } from "..";
+import { useAuth } from "../../hooks/useAuth";
 
-export default function Login() {
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+  margin: 0 auto;
+`;
+
+const Input = styled.input`
+  margin-bottom: 10px;
+  padding: 5px;
+`;
+
+const Button = styled.button`
+  padding: 10px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 20px;
+`;
+
+function Login() {
   const auth = useAuth();
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   useEffect(() => {
-    if (auth?.auth?.accessToken) {
+    if (auth?.auth?.access_token) {
       navigate(routes.pageMemberships);
     }
   }, [auth, navigate]);
@@ -27,20 +51,28 @@ export default function Login() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
+    <Form onSubmit={handleSubmit}>
+      <h2>Login</h2>
+      <Input
         type="text"
+        placeholder="Username"
         value={username}
         onChange={(e) => setUsername(e.target.value)}
-        placeholder="Username"
+        required
       />
-      <input
+      <Input
         type="password"
+        placeholder="Password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
-        placeholder="Password"
+        required
       />
-      <button type="submit">Login</button>
-    </form>
+      <Button type="submit">Login</Button>
+      <Button type="button" onClick={() => navigate(routes.pageRegister)}>
+        Registrar-se
+      </Button>
+    </Form>
   );
 }
+
+export default Login;
