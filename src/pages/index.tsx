@@ -1,5 +1,10 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate,
+} from "react-router-dom";
 import Feed from "./feed";
 import Header from "../components/Header";
 import Nav from "../components/Nav";
@@ -10,7 +15,7 @@ import Map from "./map";
 import Memberships from "./memberships";
 
 export const routes = {
-  pageRoot: "/",
+  pageRoot: "/memberships",
   pageFeed: "/feed",
   pageClubs: "/clubs",
   pageMap: "/map",
@@ -26,6 +31,8 @@ const Pages: React.FC = () => {
       <div>
         <Header />
         <Routes>
+          <Route path="*" element={<Navigate to={routes.pageRoot} replace />} />
+
           <Route path={routes.pageRoot} element={<Memberships />} />
           <Route path={routes.pageFeed} element={<Feed />} />
           <Route path={routes.pageClubs} element={<Clubs />} />
