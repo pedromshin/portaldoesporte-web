@@ -7,7 +7,7 @@ import {
   IconMap,
   IconSubtask,
 } from "@tabler/icons-react";
-import { routes } from "@src/pages";
+import { routes } from "../../../src/pages";
 
 const Container = styled.nav`
   position: fixed;

@@ -1,8 +1,8 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Feed from "./feed";
-import Header from "@components/Header";
-import Nav from "@components/Nav";
+import Header from "../components/Header";
+import Nav from "../components/Nav";
 import CreateModality from "./create-modality";
 import PrivacyPolicy from "./privacy-policy";
 import Clubs from "./clubs";
