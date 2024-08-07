@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
+import React, { useState } from "react";
+import styled from "styled-components";
+import { endpoint } from "../../utils/endpoint";
 
 const Form = styled.form`
   max-width: 500px;
@@ -43,40 +44,33 @@ const Button = styled.button`
 `;
 
 function ModalityForm({ onFormSubmit }: any) {
-  const [id, setId] = useState('');
-  const [name, setName] = useState('');
-  const [athletes, setAthletes] = useState('');
-
-  const endpoint =
-    process.env.REACT_APP_ENV_VAR === 'production'
-      ? process.env.REACT_APP_ENDPOINT_PRODUCTION
-      : process.env.REACT_APP_ENV_VAR === 'preview'
-      ? process.env.REACT_APP_ENDPOINT_STAGING
-      : process.env.REACT_APP_ENDPOINT_LOCAL;
+  const [id, setId] = useState("");
+  const [name, setName] = useState("");
+  const [athletes, setAthletes] = useState("");
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     const url = id ? `${endpoint}/modality/${id}` : `${endpoint}/modality`;
-    const method = id ? 'PATCH' : 'POST';
+    const method = id ? "PATCH" : "POST";
     const body = {
       name,
-      athletes: athletes.split(',').map((item) => item.trim()),
+      athletes: athletes.split(",").map((item) => item.trim()),
     };
 
     try {
       await fetch(url, {
         method,
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(body),
       });
       onFormSubmit();
-      setId('');
-      setName('');
-      setAthletes('');
+      setId("");
+      setName("");
+      setAthletes("");
     } catch (error) {
-      console.error('Error submitting form:', error);
+      console.error("Error submitting form:", error);
     }
   };
 
@@ -104,7 +98,7 @@ function ModalityForm({ onFormSubmit }: any) {
           required
         />
       </FormGroup>
-      <Button type="submit">{id ? 'Update' : 'Create'}</Button>
+      <Button type="submit">{id ? "Update" : "Create"}</Button>
     </Form>
   );
 }

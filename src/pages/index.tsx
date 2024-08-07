@@ -13,6 +13,8 @@ import PrivacyPolicy from "./privacy-policy";
 import Clubs from "./clubs";
 import Map from "./map";
 import Memberships from "./memberships";
+import Register from "./register";
+import Login from "./login";
 
 export const routes = {
   pageRoot: "/memberships",
@@ -43,6 +45,8 @@ const Pages: React.FC = () => {
             element={<CreateModality />}
           />
           <Route path={routes.pagePrivacyPolicy} element={<PrivacyPolicy />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
         <Nav />
       </div>
