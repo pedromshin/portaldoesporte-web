@@ -5,7 +5,7 @@ import Following from "./following";
 import CreateModality from "./create-modality";
 import PrivacyPolicy from "./privacy-policy";
 import Header from "./components/Header";
-import Footer from "./components/Footer";
+import Nav from "./components/Nav";
 
 export const routes = {
   pageRoot: "/",
@@ -30,7 +30,7 @@ const Pages: React.FC = () => {
           />
           <Route path={routes.pagePrivacyPolicy} element={<PrivacyPolicy />} />
         </Routes>
-        <Footer />
+        <Nav />
       </div>
     </Router>
   );
