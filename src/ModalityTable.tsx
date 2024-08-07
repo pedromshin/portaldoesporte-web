@@ -1,5 +1,5 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 const Table = styled.table`
   width: 100%;
@@ -43,7 +43,7 @@ const Button = styled.button`
   }
 `;
 
-function ModalityTable({ data, onDelete }) {
+function ModalityTable({ data, onDelete }: any) {
   return (
     <Table>
       <Thead>
@@ -55,11 +55,11 @@ function ModalityTable({ data, onDelete }) {
         </Tr>
       </Thead>
       <tbody>
-        {data.map((modality) => (
+        {data.map((modality: any) => (
           <Tr key={modality._id}>
             <Td>{modality._id}</Td>
             <Td>{modality.name}</Td>
-            <Td>{modality.athletes?.join(", ")}</Td>
+            <Td>{modality.athletes?.join(', ')}</Td>
             <Td>
               <Button onClick={() => onDelete(modality._id)}>Delete</Button>
             </Td>

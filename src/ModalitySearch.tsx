@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import styled from "styled-components";
+import React, { useState } from 'react';
+import styled from 'styled-components';
 
 const Form = styled.form`
   max-width: 400px;
@@ -50,10 +50,10 @@ const Button = styled.button`
   }
 `;
 
-function ModalitySearch({ onSearch }) {
-  const [id, setId] = useState("");
+function ModalitySearch({ onSearch }: any) {
+  const [id, setId] = useState('');
 
-  const handleSearch = (e) => {
+  const handleSearch = (e: any) => {
     e.preventDefault();
     onSearch(id);
   };
@@ -65,7 +65,7 @@ function ModalitySearch({ onSearch }) {
         <Input type="text" value={id} onChange={(e) => setId(e.target.value)} />
       </FormGroup>
       <Button type="submit">Search</Button>
-      <Button type="button" onClick={() => onSearch("")}>
+      <Button type="button" onClick={() => onSearch('')}>
         Fetch All
       </Button>
     </Form>
