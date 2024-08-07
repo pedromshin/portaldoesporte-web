@@ -14,7 +14,7 @@ export const routes = {
   pageFeed: "/feed",
   pageClubs: "/clubs",
   pageMap: "/map",
-  pageMemberships: "/memberships/qweqweqwe/asdasd",
+  pageMemberships: "/memberships",
 
   pageCreateModality: "/create-modality",
   pagePrivacyPolicy: "/privacy-policy",
