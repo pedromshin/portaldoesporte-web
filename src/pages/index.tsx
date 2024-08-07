@@ -22,10 +22,8 @@ export const routes = {
   pageClubs: "/clubs",
   pageMap: "/map",
   pageMemberships: "/memberships",
-
   pageRegister: "/register",
   pageLogin: "/login",
-
   pageCreateModality: "/create-modality",
   pagePrivacyPolicy: "/privacy-policy",
 } as const;
@@ -33,28 +31,19 @@ export const routes = {
 const Pages: React.FC = () => {
   return (
     <Router>
-      <div>
-        <Header />
-        <Routes>
-          <Route path="*" element={<Navigate to={routes.pageRoot} replace />} />
-
-          <Route path={routes.pageRoot} element={<Memberships />} />
-          <Route path={routes.pageFeed} element={<Feed />} />
-          <Route path={routes.pageClubs} element={<Clubs />} />
-          <Route path={routes.pageMap} element={<Map />} />
-          <Route path={routes.pageMemberships} element={<Memberships />} />
-          <Route
-            path={routes.pageCreateModality}
-            element={<CreateModality />}
-          />
-          <Route path={routes.pagePrivacyPolicy} element={<PrivacyPolicy />} />
-        </Routes>
-        <Nav />
-      </div>
+      <Header />
       <Routes>
+        <Route path="*" element={<Navigate to={routes.pageRoot} replace />} />
+        <Route path={routes.pageRoot} element={<Memberships />} />
+        <Route path={routes.pageFeed} element={<Feed />} />
+        <Route path={routes.pageClubs} element={<Clubs />} />
+        <Route path={routes.pageMap} element={<Map />} />
+        <Route path={routes.pageCreateModality} element={<CreateModality />} />
+        <Route path={routes.pagePrivacyPolicy} element={<PrivacyPolicy />} />
         <Route path={routes.pageRegister} element={<Register />} />
         <Route path={routes.pageLogin} element={<Login />} />
       </Routes>
+      <Nav />
     </Router>
   );
 };

@@ -12,8 +12,6 @@ export const AuthContext = createContext<AuthContextType | undefined>(
   undefined
 );
 
-export const useAuth = () => useContext(AuthContext);
-
 export const AuthProvider = ({ children }: PropsWithChildren) => {
   const [auth, setAuth] = useState<AuthContextType | undefined>(undefined);
 

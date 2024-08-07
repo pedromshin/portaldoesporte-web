@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import { endpoint } from "../../utils/endpoint";
+import { routes } from "..";
+import { useNavigate } from "react-router-dom";
 
 const Form = styled.form`
   display: flex;
@@ -21,9 +23,11 @@ const Button = styled.button`
   color: white;
   border: none;
   cursor: pointer;
+  margin-bottom: 20px;
 `;
 
 function Register() {
+  const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -34,8 +38,8 @@ function Register() {
         username,
         password,
       });
-      console.log(response.data);
-      alert("Registration successful!");
+      const { token } = response.data;
+      localStorage.setItem("authToken", token);
     } catch (error: any) {
       console.error("Registration error:", error.response.data);
       alert("Registration failed. Please try again.");
@@ -60,6 +64,9 @@ function Register() {
         required
       />
       <Button type="submit">Register</Button>
+      <Button type="button" onClick={() => navigate(routes.pageLogin)}>
+        Fazer login
+      </Button>
     </Form>
   );
 }

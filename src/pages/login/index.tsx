@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import { endpoint } from "../../utils/endpoint";
+import { useNavigate } from "react-router-dom";
+import { routes } from "..";
 
 const Form = styled.form`
   display: flex;
@@ -21,9 +23,11 @@ const Button = styled.button`
   color: white;
   border: none;
   cursor: pointer;
+  margin-bottom: 20px;
 `;
 
 function Login() {
+  const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -34,11 +38,12 @@ function Login() {
         username,
         password,
       });
-      console.log(response.data);
-      alert("Login successful!");
-      // Here you would typically store the token and redirect the user
+      const { token } = response.data;
+      localStorage.setItem("authToken", token);
+
+      // navigate(routes.pageMemberships);
     } catch (error: any) {
-      console.error("Login error:", error.response.data);
+      console.error("Login error:", error.response?.data || error.message);
       alert("Login failed. Please check your credentials.");
     }
   };
@@ -61,6 +66,9 @@ function Login() {
         required
       />
       <Button type="submit">Login</Button>
+      <Button type="button" onClick={() => navigate(routes.pageRegister)}>
+        Registrar-se
+      </Button>
     </Form>
   );
 }
