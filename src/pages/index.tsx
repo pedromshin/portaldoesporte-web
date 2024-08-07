@@ -14,7 +14,7 @@ export const routes = {
   pageFeed: "/feed",
   pageClubs: "/clubs",
   pageMap: "/map",
-  pageMemberships: "/memberships",
+  pageMemberships: "/memberships/qweqweqwe/asdasd",
 
   pageCreateModality: "/create-modality",
   pagePrivacyPolicy: "/privacy-policy",
@@ -26,7 +26,7 @@ const Pages: React.FC = () => {
       <div>
         <Header />
         <Routes>
-          <Route path={routes.pageRoot} element={<Feed />} />
+          <Route path={routes.pageRoot} element={<Memberships />} />
           <Route path={routes.pageFeed} element={<Feed />} />
           <Route path={routes.pageClubs} element={<Clubs />} />
           <Route path={routes.pageMap} element={<Map />} />
