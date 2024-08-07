@@ -7,6 +7,7 @@ import {
   IconMap,
   IconSubtask,
 } from "@tabler/icons-react";
+import { routes } from "@src/pages";
 
 const Container = styled.nav`
   position: fixed;
@@ -36,22 +37,22 @@ export default () => {
     <Container>
       <List>
         <Item>
-          <Link to="/">
+          <Link to={routes.pageFeed}>
             <IconHome size={24} />
           </Link>
         </Item>
         <Item>
-          <Link to="/following">
+          <Link to={routes.pageClubs}>
             <IconSubtask size={24} />
           </Link>
         </Item>
         <Item>
-          <Link to="/create-modality">
+          <Link to={routes.pageMap}>
             <IconMap size={24} />
           </Link>
         </Item>
         <Item>
-          <Link to="/create-modality">
+          <Link to={routes.pageMemberships}>
             <IconComponents size={24} />
           </Link>
         </Item>

@@ -1,16 +1,21 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Feed from "./feed";
-import Following from "./following";
+import Header from "@components/Header";
+import Nav from "@components/Nav";
 import CreateModality from "./create-modality";
 import PrivacyPolicy from "./privacy-policy";
-import Header from "./components/Header";
-import Nav from "./components/Nav";
+import Clubs from "./clubs";
+import Map from "./map";
+import Memberships from "./memberships";
 
 export const routes = {
   pageRoot: "/",
   pageFeed: "/feed",
-  pageFollowing: "/following",
+  pageClubs: "/clubs",
+  pageMap: "/map",
+  pageMemberships: "/memberships",
+
   pageCreateModality: "/create-modality",
   pagePrivacyPolicy: "/privacy-policy",
 } as const;
@@ -23,7 +28,9 @@ const Pages: React.FC = () => {
         <Routes>
           <Route path={routes.pageRoot} element={<Feed />} />
           <Route path={routes.pageFeed} element={<Feed />} />
-          <Route path={routes.pageFollowing} element={<Following />} />
+          <Route path={routes.pageClubs} element={<Clubs />} />
+          <Route path={routes.pageMap} element={<Map />} />
+          <Route path={routes.pageMemberships} element={<Memberships />} />
           <Route
             path={routes.pageCreateModality}
             element={<CreateModality />}
