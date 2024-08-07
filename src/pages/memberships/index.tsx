@@ -1,3 +1,3 @@
 export default () => {
-  return <h2>memberships</h2>;
+  return <h2>Associações</h2>;
 };

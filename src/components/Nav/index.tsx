@@ -14,6 +14,10 @@ const Container = styled.nav`
   bottom: 0;
   width: 100%;
   background: white;
+
+  @media (min-width: 1024px) {
+    display: none;
+  }
 `;
 
 const List = styled.ul`
