@@ -4,6 +4,7 @@ import axios from "axios";
 import { endpoint } from "../../utils/endpoint";
 import { useNavigate } from "react-router-dom";
 import { routes } from "..";
+import { useAuth } from "../../hooks/useAuth";
 
 const Form = styled.form`
   display: flex;
@@ -27,6 +28,7 @@ const Button = styled.button`
 `;
 
 function Login() {
+  const auth = useAuth();
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");

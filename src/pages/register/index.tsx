@@ -4,6 +4,7 @@ import axios from "axios";
 import { endpoint } from "../../utils/endpoint";
 import { routes } from "..";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../hooks/useAuth";
 
 const Form = styled.form`
   display: flex;
@@ -27,6 +28,7 @@ const Button = styled.button`
 `;
 
 function Register() {
+  const auth = useAuth();
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -38,8 +40,11 @@ function Register() {
         username,
         password,
       });
-      const { token } = response.data;
-      localStorage.setItem("authToken", token);
+
+      const { accessToken } = response.data;
+      localStorage.setItem("authToken", accessToken);
+
+      navigate(routes.pageMemberships);
     } catch (error: any) {
       console.error("Registration error:", error.response.data);
       alert("Registration failed. Please try again.");
