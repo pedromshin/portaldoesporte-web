@@ -7,9 +7,15 @@ import {
 } from "react";
 import axios from "axios";
 import { endpoint } from "../utils/endpoint";
+import { jwtDecode, JwtPayload } from "jwt-decode";
 
 export type AuthContextType = {
-  auth: { access_token: string }; // Define a proper type for `auth` if you know it
+  auth: {
+    access_token: string;
+    decodedToken: JwtPayload & {
+      username: string;
+    };
+  };
   login: (username: string, password: string) => Promise<void>;
   register: (username: string, password: string) => Promise<void>;
   logout: () => void;
@@ -20,18 +26,25 @@ export const AuthContext = createContext<AuthContextType | undefined>(
 );
 
 export const AuthProvider = ({ children }: PropsWithChildren) => {
-  const [auth, setAuth] = useState<any>(null);
+  const [auth, setAuth] = useState<any>(undefined);
 
   useEffect(() => {
     const checkAuth = () => {
       const access_token = localStorage.getItem("access_token");
       if (access_token) {
-        setAuth({ access_token });
+        try {
+          const decodedToken: AuthContextType["auth"]["decodedToken"] =
+            jwtDecode(access_token);
+
+          setAuth({ access_token, decodedToken });
+        } catch (error) {
+          console.error("Token decoding error:", error);
+        }
       }
     };
 
     checkAuth();
-  }, []);
+  }, [setAuth]);
 
   const login = async (username: string, password: string) => {
     const response = await axios.post(`${endpoint}/auth/login`, {
