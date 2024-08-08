@@ -13,7 +13,7 @@ export default () => {
 
   return (
     <div>
-      <h2>Criar modalidade</h2>
+      <h2>Criar subscribable</h2>
       <div className="App">
         <Search onSearch={handleSearch} />
         <Table data={data} onDelete={handleDelete} />
