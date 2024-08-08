@@ -15,6 +15,7 @@ import Map from "./map";
 import Memberships from "./memberships";
 import Register from "./register";
 import Login from "./login";
+import CreateSubscribable from "./create-subscribable";
 
 export const routes = {
   pageRoot: "/memberships",
@@ -25,6 +26,7 @@ export const routes = {
   pageRegister: "/register",
   pageLogin: "/login",
   pageCreateModality: "/create-modality",
+  pageCreateSubscribable: "/create-subscribable",
   pagePrivacyPolicy: "/privacy-policy",
 } as const;
 
@@ -39,6 +41,10 @@ const Pages: React.FC = () => {
         <Route path={routes.pageClubs} element={<Clubs />} />
         <Route path={routes.pageMap} element={<Map />} />
         <Route path={routes.pageCreateModality} element={<CreateModality />} />
+        <Route
+          path={routes.pageCreateSubscribable}
+          element={<CreateSubscribable />}
+        />
         <Route path={routes.pagePrivacyPolicy} element={<PrivacyPolicy />} />
         <Route path={routes.pageRegister} element={<Register />} />
         <Route path={routes.pageLogin} element={<Login />} />
