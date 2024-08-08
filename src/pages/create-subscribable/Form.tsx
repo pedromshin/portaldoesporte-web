@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useForm } from "react-hook-form";
 import styled from "styled-components";
 import { endpoint } from "../../utils/endpoint";
 
@@ -43,20 +43,17 @@ const Button = styled.button`
   }
 `;
 
-export default function Form({ onFormSubmit }: any) {
-  const [id, setId] = useState("");
-  const [name, setName] = useState("");
-  const [athletes, setAthletes] = useState("");
+export default function Form({ data, onFormSubmit }: any) {
+  const { register, handleSubmit, reset } = useForm();
 
-  const handleSubmit = async (e: any) => {
-    e.preventDefault();
-    const url = id
-      ? `${endpoint}/subscribable/${id}`
+  const onSubmit = async (data: any) => {
+    const url = data.id
+      ? `${endpoint}/subscribable/${data.id}`
       : `${endpoint}/subscribable`;
-    const method = id ? "PATCH" : "POST";
+    const method = data.id ? "PATCH" : "POST";
     const body = {
-      name,
-      athletes: athletes.split(",").map((item) => item.trim()),
+      name: data.name,
+      entity: data.entity,
     };
 
     try {
@@ -68,39 +65,27 @@ export default function Form({ onFormSubmit }: any) {
         body: JSON.stringify(body),
       });
       onFormSubmit();
-      setId("");
-      setName("");
-      setAthletes("");
+      reset();
     } catch (error) {
       console.error("Error submitting form:", error);
     }
   };
 
   return (
-    <FormComponent onSubmit={handleSubmit}>
+    <FormComponent onSubmit={handleSubmit(onSubmit)}>
       <FormGroup>
         <Label>ID (for update only):</Label>
-        <Input type="text" value={id} onChange={(e) => setId(e.target.value)} />
+        <Input type="text" {...register("id")} />
       </FormGroup>
       <FormGroup>
         <Label>Name:</Label>
-        <Input
-          type="text"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          required
-        />
+        <Input type="text" {...register("name", { required: true })} />
       </FormGroup>
       <FormGroup>
-        <Label>athletes (comma separated):</Label>
-        <Input
-          type="text"
-          value={athletes}
-          onChange={(e) => setAthletes(e.target.value)}
-          required
-        />
+        <Label>Entity:</Label>
+        <Input type="text" {...register("entity", { required: true })} />
       </FormGroup>
-      <Button type="submit">{id ? "Update" : "Create"}</Button>
+      <Button type="submit">{data?.id ? "Update" : "Create"}</Button>
     </FormComponent>
   );
 }

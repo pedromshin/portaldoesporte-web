@@ -50,7 +50,7 @@ export default function Table({ data, onDelete }: any) {
         <Tr>
           <Th>ID</Th>
           <Th>Name</Th>
-          <Th>Athletes</Th>
+          <Th>Entity</Th>
           <Th>Actions</Th>
         </Tr>
       </Thead>
@@ -59,7 +59,7 @@ export default function Table({ data, onDelete }: any) {
           <Tr key={item._id}>
             <Td>{item._id}</Td>
             <Td>{item.name}</Td>
-            <Td>{item.athletes?.join(", ")}</Td>
+            <Td>{item.entity}</Td>
             <Td>
               <Button onClick={() => onDelete(item._id)}>Delete</Button>
             </Td>
