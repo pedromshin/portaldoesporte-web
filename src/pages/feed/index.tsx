@@ -1,8 +1,5 @@
-import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
 import { useDataFetcher } from "../../hooks/useDataFetcher";
-import Table from "./Table";
-import { useEffect } from "react";
 
 export default () => {
   const { auth } = useAuth();
@@ -11,10 +8,5 @@ export default () => {
     auth,
   ]);
 
-  return (
-    <h2>
-      Associações
-      <Table data={data} />
-    </h2>
-  );
+  return <h2>Associações</h2>;
 };
