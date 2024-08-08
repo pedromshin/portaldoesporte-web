@@ -1,6 +1,4 @@
-import { useState, useEffect } from "react";
 import "./App.css";
-import { endpoint } from "../../utils/endpoint";
 import Search from "./Search";
 import Table from "./Table";
 import Form from "./Form";

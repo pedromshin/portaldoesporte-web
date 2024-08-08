@@ -1,9 +1,7 @@
-import React, { useState, useEffect } from "react";
 import "./App.css";
 import ModalityTable from "./Table";
 import ModalityForm from "./Form";
 import ModalitySearch from "./Search";
-import { endpoint } from "../../utils/endpoint";
 import { useDataFetcher } from "../../hooks/useDataFetcher";
 
 export default () => {
