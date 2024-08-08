@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import { useApiRequest } from "../../hooks/useApiRequest";
+import { useAuth } from "../../hooks/useAuth";
 
 const TableComponent = styled.table`
   width: 100%;
@@ -30,7 +32,7 @@ const Td = styled.td`
 `;
 
 const Button = styled.button`
-  background-color: #ff4c4c;
+  background-color: blue;
   color: white;
   border: none;
   padding: 8px 12px;
@@ -43,7 +45,16 @@ const Button = styled.button`
   }
 `;
 
-export default function Table({ data, onDelete }: any) {
+export default function Table({ data }: any) {
+  const { auth } = useAuth();
+  const { patch } = useApiRequest();
+
+  const onSubscribe = (subscribableId: string) => {
+    patch(`user/${auth.decodedToken.sub}`, {
+      subscribableIds: [subscribableId],
+    });
+  };
+
   return (
     <TableComponent>
       <Thead>
@@ -61,7 +72,7 @@ export default function Table({ data, onDelete }: any) {
             <Td>{item.name}</Td>
             <Td>{item.entity}</Td>
             <Td>
-              <Button onClick={() => onDelete(item._id)}>Delete</Button>
+              <Button onClick={() => onSubscribe(item?._id)}>Acompanhar</Button>
             </Td>
           </Tr>
         ))}
