@@ -3,7 +3,8 @@ import { endpoint } from "../utils/endpoint";
 
 export const useDataFetcher = (
   path: string,
-  defaultParams: { [key: string]: any } = {}
+  defaultParams: null | { [key: string]: any } = {},
+  deps: readonly unknown[] = []
 ) => {
   const [data, setData] = useState<any[]>([]);
 
@@ -44,7 +45,7 @@ export const useDataFetcher = (
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [...deps]);
 
   return { data, handleSearch, handleDelete, refetch: fetchData };
 };
