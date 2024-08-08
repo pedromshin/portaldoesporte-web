@@ -19,6 +19,7 @@ export type AuthContextType = {
   login: (username: string, password: string) => Promise<void>;
   register: (username: string, password: string) => Promise<void>;
   logout: () => void;
+  verifyAuth: (callback: () => Promise<void>) => void;
 };
 
 export const AuthContext = createContext<AuthContextType | undefined>(
@@ -65,8 +66,18 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
     setAuth(null);
   };
 
+  const verifyAuth = (callback: () => Promise<void>) => {
+    console.log(auth);
+    if (!auth) {
+      alert("You must be logged in to perform this action.");
+      return;
+    } else {
+      callback();
+    }
+  };
+
   return (
-    <AuthContext.Provider value={{ auth, login, register, logout }}>
+    <AuthContext.Provider value={{ auth, login, register, logout, verifyAuth }}>
       {children}
     </AuthContext.Provider>
   );

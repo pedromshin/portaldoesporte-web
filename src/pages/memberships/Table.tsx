@@ -46,11 +46,13 @@ const Button = styled.button`
 `;
 
 export default function Table({ data }: any) {
-  const { auth } = useAuth();
+  const { auth, verifyAuth } = useAuth();
   const { patch } = useApiRequest();
 
   const onSubscribe = (subscribableId: string) => {
-    patch(`user/${auth.decodedToken.sub}/subscribe/${subscribableId}`);
+    verifyAuth(() =>
+      patch(`user/${auth.decodedToken.sub}/subscribe/${subscribableId}`)
+    );
   };
 
   return (
