@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 import { endpoint } from "../../utils/endpoint";
 
-const Form = styled.form`
+const FormComponent = styled.form`
   max-width: 500px;
   margin: 20px auto;
   padding: 20px;
@@ -43,7 +43,7 @@ const Button = styled.button`
   }
 `;
 
-function ModalityForm({ onFormSubmit }: any) {
+export default function Form({ onFormSubmit }: any) {
   const [id, setId] = useState("");
   const [name, setName] = useState("");
   const [athletes, setAthletes] = useState("");
@@ -75,7 +75,7 @@ function ModalityForm({ onFormSubmit }: any) {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <FormComponent onSubmit={handleSubmit}>
       <FormGroup>
         <Label>ID (for update only):</Label>
         <Input type="text" value={id} onChange={(e) => setId(e.target.value)} />
@@ -99,8 +99,6 @@ function ModalityForm({ onFormSubmit }: any) {
         />
       </FormGroup>
       <Button type="submit">{id ? "Update" : "Create"}</Button>
-    </Form>
+    </FormComponent>
   );
 }
-
-export default ModalityForm;
