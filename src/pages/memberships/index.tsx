@@ -8,7 +8,7 @@ export default () => {
   const auth = useAuth();
   const navigate = useNavigate();
 
-  const { data, handleSearch, handleDelete, fetchData } =
+  const { data, handleSearch, handleDelete, refetch } =
     useDataFetcher("subscribable");
 
   const handleLogout = () => {

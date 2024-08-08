@@ -5,7 +5,7 @@ import Form from "./Form";
 import { useDataFetcher } from "../../hooks/useDataFetcher";
 
 export default () => {
-  const { data, handleSearch, handleDelete, fetchData } =
+  const { data, handleSearch, handleDelete, refetch } =
     useDataFetcher("subscribable");
   // const [searchId, setSearchId] = useState("");
 
@@ -15,7 +15,7 @@ export default () => {
       <div className="App">
         <Search onSearch={handleSearch} />
         <Table data={data} onDelete={handleDelete} />
-        <Form onFormSubmit={fetchData} />
+        <Form refetch={refetch} />
       </div>
     </div>
   );

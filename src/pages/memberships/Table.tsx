@@ -50,9 +50,7 @@ export default function Table({ data }: any) {
   const { patch } = useApiRequest();
 
   const onSubscribe = (subscribableId: string) => {
-    patch(`user/${auth.decodedToken.sub}`, {
-      subscribableIds: [subscribableId],
-    });
+    patch(`user/${auth.decodedToken.sub}/subscribe/${subscribableId}`);
   };
 
   return (

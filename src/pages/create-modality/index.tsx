@@ -1,11 +1,11 @@
 import "./App.css";
-import ModalityTable from "./Table";
-import ModalityForm from "./Form";
-import ModalitySearch from "./Search";
+import Table from "./Table";
+import Form from "./Form";
+import Search from "./Search";
 import { useDataFetcher } from "../../hooks/useDataFetcher";
 
 export default () => {
-  const { data, handleSearch, handleDelete, fetchData } =
+  const { data, handleSearch, handleDelete, refetch } =
     useDataFetcher("modality");
 
   // const [searchId, setSearchId] = useState("");
@@ -14,9 +14,9 @@ export default () => {
     <div>
       <h2>Criar modalidade</h2>
       <div className="App">
-        <ModalitySearch onSearch={handleSearch} />
-        <ModalityTable data={data} onDelete={handleDelete} />
-        <ModalityForm onFormSubmit={fetchData} />
+        <Search onSearch={handleSearch} />
+        <Table data={data} onDelete={handleDelete} />
+        <Form refetch={refetch} />
       </div>
     </div>
   );

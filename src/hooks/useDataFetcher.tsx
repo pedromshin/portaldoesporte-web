@@ -46,5 +46,5 @@ export const useDataFetcher = (
     fetchData();
   }, []);
 
-  return { data, handleSearch, handleDelete, fetchData };
+  return { data, handleSearch, handleDelete, refetch: fetchData };
 };

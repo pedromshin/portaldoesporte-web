@@ -43,7 +43,7 @@ const Button = styled.button`
   }
 `;
 
-export default function Form({ data, onFormSubmit }: any) {
+export default function Form({ data, refetch }: any) {
   const { register, handleSubmit, reset } = useForm();
 
   const onSubmit = async (data: any) => {
@@ -64,7 +64,7 @@ export default function Form({ data, onFormSubmit }: any) {
         },
         body: JSON.stringify(body),
       });
-      onFormSubmit();
+      refetch();
       reset();
     } catch (error) {
       console.error("Error submitting form:", error);

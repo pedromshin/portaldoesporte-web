@@ -43,7 +43,7 @@ const Button = styled.button`
   }
 `;
 
-export default function Form({ onFormSubmit }: any) {
+export default function Form({ refetch }: any) {
   const [id, setId] = useState("");
   const [name, setName] = useState("");
   const [athletes, setAthletes] = useState("");
@@ -65,7 +65,7 @@ export default function Form({ onFormSubmit }: any) {
         },
         body: JSON.stringify(body),
       });
-      onFormSubmit();
+      refetch();
       setId("");
       setName("");
       setAthletes("");
