@@ -31,8 +31,6 @@ export const AuthContext = createContext<AuthContextType | undefined>(
 export const AuthProvider = ({ children }: PropsWithChildren) => {
   const [auth, setAuth] = useState<any>(undefined);
 
-  console.log("auth", auth);
-
   const login = async (username: string, password: string) => {
     const response = await axios.post(`${endpoint}/auth/login`, {
       username,
