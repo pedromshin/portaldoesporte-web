@@ -44,7 +44,7 @@ export const useDataFetcher = (
   };
 
   useEffect(() => {
-    fetchData();
+    !deps.includes(undefined) && fetchData();
   }, [...deps]);
 
   return { data, handleSearch, handleDelete, refetch: fetchData };

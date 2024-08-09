@@ -28,7 +28,6 @@ const Button = styled.button`
 `;
 
 function Register() {
-  const auth = useAuth();
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");

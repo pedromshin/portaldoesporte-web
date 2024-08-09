@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import axios from "axios";
-import { endpoint } from "../../utils/endpoint";
 import { useNavigate } from "react-router-dom";
 import { routes } from "..";
 import { useAuth } from "../../hooks/useAuth";
+import { access_token } from "../../providers/AuthProvider";
 
 const Form = styled.form`
   display: flex;
@@ -28,21 +27,21 @@ const Button = styled.button`
 `;
 
 function Login() {
-  const auth = useAuth();
+  const { login } = useAuth();
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   useEffect(() => {
-    if (auth?.auth?.access_token) {
+    if (access_token) {
       navigate(routes.pageMemberships);
     }
-  }, [auth, navigate]);
+  }, [navigate]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await auth.login(username, password);
+      await login(username, password);
       navigate(routes.pageMemberships);
     } catch (error: any) {
       console.error("Login error:", error.response?.data || error.message);

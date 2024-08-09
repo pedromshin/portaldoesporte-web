@@ -9,6 +9,8 @@ import axios from "axios";
 import { endpoint } from "../utils/endpoint";
 import { jwtDecode, JwtPayload } from "jwt-decode";
 
+export const access_token = localStorage.getItem("access_token");
+
 export type AuthContextType = {
   auth: {
     access_token: string;
@@ -29,23 +31,7 @@ export const AuthContext = createContext<AuthContextType | undefined>(
 export const AuthProvider = ({ children }: PropsWithChildren) => {
   const [auth, setAuth] = useState<any>(undefined);
 
-  useEffect(() => {
-    const checkAuth = () => {
-      const access_token = localStorage.getItem("access_token");
-      if (access_token) {
-        try {
-          const decodedToken: AuthContextType["auth"]["decodedToken"] =
-            jwtDecode(access_token);
-
-          setAuth({ access_token, decodedToken });
-        } catch (error) {
-          console.error("Token decoding error:", error);
-        }
-      }
-    };
-
-    checkAuth();
-  }, [setAuth]);
+  console.log("auth", auth);
 
   const login = async (username: string, password: string) => {
     const response = await axios.post(`${endpoint}/auth/login`, {
@@ -67,7 +53,6 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
   };
 
   const verifyAuth = (callback: () => Promise<void>) => {
-    console.log(auth);
     if (!auth) {
       alert("You must be logged in to perform this action.");
       return;
@@ -75,6 +60,23 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
       callback();
     }
   };
+
+  useEffect(() => {
+    const checkAuth = () => {
+      if (access_token) {
+        try {
+          const decodedToken: AuthContextType["auth"]["decodedToken"] =
+            jwtDecode(access_token);
+
+          setAuth({ access_token, decodedToken });
+        } catch (error) {
+          console.error("Token decoding error:", error);
+        }
+      }
+    };
+
+    checkAuth();
+  }, [setAuth, access_token]);
 
   return (
     <AuthContext.Provider value={{ auth, login, register, logout, verifyAuth }}>
