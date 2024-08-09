@@ -1,9 +1,15 @@
+import { useAuth } from "../../hooks/useAuth";
 import { useDataFetcher } from "../../hooks/useDataFetcher";
 import Table from "./Table";
 
 export default () => {
-  const { data, handleSearch, handleDelete, refetch } =
-    useDataFetcher("subscribable");
+  const { auth } = useAuth();
+
+  const { data } = useDataFetcher(
+    `subscribable/${auth?.decodedToken?.sub}/clubs`,
+    null,
+    [auth]
+  );
 
   return (
     <h2>
