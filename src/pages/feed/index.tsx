@@ -1,5 +1,6 @@
 import { useAuth } from "../../hooks/useAuth";
 import { useDataFetcher } from "../../hooks/useDataFetcher";
+import Table from "./Table";
 
 export default () => {
   const { auth } = useAuth();
@@ -10,5 +11,9 @@ export default () => {
     [auth]
   );
 
-  return <h2>Associações</h2>;
+  return (
+    <>
+      <h2>Associações</h2> <Table data={data} />
+    </>
+  );
 };
