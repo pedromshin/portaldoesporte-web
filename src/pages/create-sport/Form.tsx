@@ -50,7 +50,7 @@ export default function Form({ refetch }: any) {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    const url = id ? `${endpoint}/modality/${id}` : `${endpoint}/modality`;
+    const url = id ? `${endpoint}/sport/${id}` : `${endpoint}/sport`;
     const method = id ? "PATCH" : "POST";
     const body = {
       name,

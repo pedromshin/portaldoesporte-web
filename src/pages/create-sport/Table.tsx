@@ -54,13 +54,13 @@ export default function Table({ data, onDelete }: any) {
         </Tr>
       </Thead>
       <tbody>
-        {data.map((modality: any) => (
-          <Tr key={modality._id}>
-            <Td>{modality._id}</Td>
-            <Td>{modality.name}</Td>
-            <Td>{modality.athletes?.join(", ")}</Td>
+        {data.map((item: any) => (
+          <Tr key={item._id}>
+            <Td>{item._id}</Td>
+            <Td>{item.name}</Td>
+            <Td>{item.athletes?.join(", ")}</Td>
             <Td>
-              <Button onClick={() => onDelete(modality._id)}>Delete</Button>
+              <Button onClick={() => onDelete(item._id)}>Delete</Button>
             </Td>
           </Tr>
         ))}

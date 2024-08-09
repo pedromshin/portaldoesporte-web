@@ -8,7 +8,7 @@ import {
 import Feed from "./feed";
 import Header from "../components/Header";
 import Nav from "../components/Nav";
-import CreateModality from "./create-modality";
+import CreateSport from "./create-sport";
 import PrivacyPolicy from "./privacy-policy";
 import Clubs from "./clubs";
 import Map from "./map";
@@ -25,7 +25,7 @@ export const routes = {
   pageMemberships: "/memberships",
   pageRegister: "/register",
   pageLogin: "/login",
-  pageCreateModality: "/create-modality",
+  pageCreateSport: "/create-sport",
   pageCreateSubscribable: "/create-subscribable",
   pagePrivacyPolicy: "/privacy-policy",
 } as const;
@@ -40,7 +40,7 @@ const Pages: React.FC = () => {
         <Route path={routes.pageFeed} element={<Feed />} />
         <Route path={routes.pageClubs} element={<Clubs />} />
         <Route path={routes.pageMap} element={<Map />} />
-        <Route path={routes.pageCreateModality} element={<CreateModality />} />
+        <Route path={routes.pageCreateSport} element={<CreateSport />} />
         <Route
           path={routes.pageCreateSubscribable}
           element={<CreateSubscribable />}
